@@ -18,11 +18,9 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 $api = app('Dingo\Api\Routing\Router');
-//Route::api(['version' => 'v1', 'prefix' => 'v1'], function() {
-//
-//    Route::resource('bycycles', 'BycyclesController', array('except' => array('create', 'edit')));
-//
-//});
 $api->version('v1', function($api) {
-    $api->resource('bycycles', 'App\Http\Controllers\BycyclesController');
+//    $api->resource('bycycles', 'App\Http\Controllers\BycyclesController');
+    $api->get('test', function () {
+        return 'It is ok';
+    });
 });

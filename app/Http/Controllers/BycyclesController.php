@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Bycycle;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class BycyclesController extends Controller
+class BycyclesController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +16,7 @@ class BycyclesController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Bycycle::all();
     }
 
     /**
@@ -34,9 +25,15 @@ class BycyclesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $bycycle = new Bycycle();
+        if($bycycle->create(Request::all())) {
+            return array('status' => 200);
+        }
+        else {
+            return array('status' => 500);
+        }
     }
 
     /**
@@ -47,18 +44,13 @@ class BycyclesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        if($bycycle = Bycycle::find($id)) {
+            return $bycycle;
+        }
+        else {
+            $status = array('status' => 400);
+            return $status;
+        }
     }
 
     /**
@@ -68,9 +60,19 @@ class BycyclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        if($bycycle = Bycycle::find($id)) {
+            if($bycycle->update(Request::all())) {
+                return array('status' => 200);
+            }
+            else {
+                return array('status' => 500);
+            }
+        }
+        else {
+            return array('status' => 400);
+        }
     }
 
     /**
@@ -81,6 +83,16 @@ class BycyclesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($bycycle = Bycycle::find($id)) {
+            if($bycycle->delete()) {
+                return array('status' => 200);
+            }
+            else {
+                return array('status' => 500);
+            }
+        }
+        else {
+            return array('status' => 400);
+        }
     }
 }
