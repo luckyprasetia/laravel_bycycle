@@ -19,8 +19,8 @@ Route::get('/user', function (Request $request) {
 
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function($api) {
-//    $api->resource('bycycles', 'App\Http\Controllers\BycyclesController');
-    $api->get('test', function () {
-        return 'It is ok';
-    });
+    $api->resource('bycycles', 'App\Http\Controllers\BycyclesController');
+//    $api->get('test', function () {
+//        return 'It is ok';
+//    });
 });

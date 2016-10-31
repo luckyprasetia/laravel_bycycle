@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class BycyclesController extends BaseController
+class BycyclesController extends Controller
 {
     /**
      * Display a listing of the resource.
