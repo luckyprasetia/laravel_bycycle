@@ -25,10 +25,10 @@ class BycyclesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $bycycle = new Bycycle();
-        if($bycycle->create(Request::all())) {
+//        $bycycle = new Bycycle();
+        if(Bycycle::create($request->all())) {
             return array('status' => 200);
         }
         else {
